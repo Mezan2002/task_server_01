@@ -269,6 +269,14 @@ const run = async () => {
       res.send(result);
     });
     // * post about API end
+
+    // * get all available partner API start
+    app.get("/get-all-available-partners", async (req, res) => {
+      const query = { isAvailable: true };
+      const result = await partnerCollection.find(query).toArray();
+      res.send(result);
+    });
+    // * get all available partner API end
   } finally {
     console.log();
   }
