@@ -33,6 +33,7 @@ const paymentsCollection = client.db("testDBUser").collection("payments");
 const aboutCollection = client.db("testDBUser").collection("about");
 const servicesCollection = client.db("testDBUser").collection("services");
 const emailsCollection = client.db("testDBUser").collection("emails");
+const tutorialsCollection = client.db("testDBUser").collection("tutorials");
 // * collections end
 
 // * CRUD run function start
@@ -242,6 +243,32 @@ const run = async () => {
       res.send(result);
     });
     // * update Image Upload API end
+
+    // ! Working Date : 27 July 2023 , Time : 7.30 am (Washington DC Time, USA)
+
+    // * get tutorials API start
+    app.get("/get-tutorials", async (req, res) => {
+      const query = {};
+      const result = await tutorialsCollection.find(query).toArray();
+      res.send(result);
+    });
+    // * get tutorials API end
+
+    // * post tutorial API start
+    app.post("/post-tutorial", async (req, res) => {
+      const tutorialData = req.body;
+      const result = await tutorialsCollection.insertOne(tutorialData);
+      res.send(result);
+    });
+    // * post tutorial API end
+
+    // * post about API start
+    app.post("/post-about", async (req, res) => {
+      const aboutData = req.body;
+      const result = await tutorialsCollection.insertOne(aboutData);
+      res.send(result);
+    });
+    // * post about API end
   } finally {
     console.log();
   }
